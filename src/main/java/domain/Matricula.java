@@ -1,10 +1,23 @@
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class Matricula implements BaseEntity<Long> {
+	@Id
+	@SequenceGenerator(name = "matricula_id_generator", sequenceName = "matricula_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "matricula_id_generator")
 	private Long id;
 
+	@ManyToOne
 	private Curso curso;
 
+	@ManyToOne
 	private Alumno alumno;
 
 	private Double nota;
